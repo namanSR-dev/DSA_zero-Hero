@@ -1,5 +1,5 @@
 from collections import deque
-from tree_printer import visual_print
+from .tree_printer import visual_print
 
 class TreeNode:
     def __init__(self, value):
@@ -14,37 +14,32 @@ class Tree:
     
 
     def create_tree(self, elements) -> TreeNode:
-        """Builds the Level ordered complete Binary Tree"""
-
-        iterator = iter(elements)
-
-        # base case: setting the root first
-        try:
-            self.root = TreeNode(next(iterator))
-        except StopIteration:
+        """Builds a level-order tree, respecting None as empty branches."""
+    
+        if not elements or elements[0] is None:
             self.root = None
-            return self.root
-        
-        
-        queue = deque([self.root])    # waiting order queue for level order insertion
-        
+            return None
+    
+        iterator = iter(elements)
+        self.root = TreeNode(next(iterator))
+        queue = deque([self.root])
+    
         while queue:
             current_node = queue.popleft()
-            # setting the right and left nodes
+    
             for child_side in ("left", "right"):
-                
                 try:
                     value = next(iterator)
-                    node_child = TreeNode(value)
-
-                    # Dynamically setting the attribut of the node object
-                    setattr(current_node, child_side, node_child)
-
-                    queue.append(node_child)
-
+                    if value is not None:
+                        node_child = TreeNode(value)
+                        setattr(current_node, child_side, node_child)
+                        queue.append(node_child)
+                    else:
+                        # Explicitly leave the attribute as None (empty branch)
+                        setattr(current_node, child_side, None)
                 except StopIteration:
-                    queue.clear()  # clearing the queue once task done
                     return self.root
+        return self.root
 
 
 
