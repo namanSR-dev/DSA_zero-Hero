@@ -1,4 +1,4 @@
-from tree_implement.tree_base import Tree
+from tree_implement import Tree
 
 # Pattern 1 - Traversal DFS
 def preorder_traversal(root):

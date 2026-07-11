@@ -1,4 +1,4 @@
-from tree_implement.tree_base import Tree
+from tree_implement import Tree
 
 #Pattern 4:  Multi-state return
 def check_balance(node):

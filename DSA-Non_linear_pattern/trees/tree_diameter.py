@@ -1,4 +1,4 @@
-from tree_implement.tree_base import Tree
+from tree_implement import Tree
 
 # Pattern 5 : Multiple Information + Global Aggregation
 def tree_diameter(node):

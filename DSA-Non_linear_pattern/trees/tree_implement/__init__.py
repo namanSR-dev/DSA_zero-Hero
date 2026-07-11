@@ -1,1 +1,3 @@
-from tree_implement.tree_base import Tree
+from .tree_base import Tree as Tree, TreeNode as TreeNode
+
+__all__ = ["Tree", "TreeNode"]
